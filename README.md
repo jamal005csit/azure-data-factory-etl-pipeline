@@ -17,7 +17,7 @@ The pipeline is hosted within an Azure Data Factory instance. We utilized a **Ma
 The raw data is ingested from a CSV file. One critical step was manually overriding the **Source Projection** to treat all incoming columns as `string`. This prevents ADF from incorrectly guessing data types (Type Mismatch) before the cleaning logic can run.
 
 * **Source Format:** Delimited Text (CSV)
-* **Key Column Renames:** `O_ID` to `order_id`, `O_Date` to `order_date`, etc.
+* **Key Column Renames:** `order_id` to `O_ID` , `order_date` to `O_Date`, etc.
 
 ---
 
