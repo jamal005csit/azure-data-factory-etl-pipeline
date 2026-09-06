@@ -13,6 +13,7 @@ The pipeline is hosted within an Azure Data Factory instance. We utilized a **Ma
 
 ---
 
+```mermaid
 graph LR
     A["Source: Delimited Text (CSV)[cite: 1]"] --> B["Azure Data Factory (ADF) Mapping Data Flow[cite: 1]"]
     subgraph ADF Pipeline Transformations[cite: 1]
@@ -20,6 +21,7 @@ graph LR
         B2 --> B3["Filter Transformation (Data Validation)[cite: 1]"]
     end
     B --> C["Sink: Cleaned Target Storage[cite: 1]"]
+```
 
 ---
 
