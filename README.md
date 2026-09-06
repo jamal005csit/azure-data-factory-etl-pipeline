@@ -13,6 +13,26 @@ The pipeline is hosted within an Azure Data Factory instance. We utilized a **Ma
 
 ---
 
+graph LR
+    A["Source: Delimited Text (CSV)[cite: 1]"] --> B["Azure Data Factory (ADF) Mapping Data Flow[cite: 1]"]
+    subgraph ADF Pipeline Transformations[cite: 1]
+        B1["Source Projection & Schema Fixes[cite: 1]"] --> B2["Derived Column Logic (Dates, Financials, Text)[cite: 1]"]
+        B2 --> B3["Filter Transformation (Data Validation)[cite: 1]"]
+    end
+    B --> C["Sink: Cleaned Target Storage[cite: 1]"]
+
+---
+
+## Pipeline Flow Details
+
+* **Source**: Raw sales data ingested from a CSV file where the source projection is manually overridden to string types to prevent type mismatches.
+
+* **Azure Data Factory (ADF)**: Processes the data through a Mapping Data Flow using a debug cluster for real-time validation. Transformations standardize dates, correct negative financial figures using absolute values, normalize text fields, and filter out records with null critical fields.
+
+* **Sink**: The final destination receiving the cleaned, standardized, and high-quality sales records.
+
+---
+
 ## 2. Source Configuration & Schema Fixes
 The raw data is ingested from a CSV file. One critical step was manually overriding the **Source Projection** to treat all incoming columns as `string`. This prevents ADF from incorrectly guessing data types (Type Mismatch) before the cleaning logic can run.
 
